@@ -1,0 +1,8 @@
+destination: ./_site
+#lsi: false
+port: 3000
+#pygments: null
+markdown: redcarpet
+permalink: /:year/:month/:title
+excerpt_separator: asdasdadads
+#include: [".htaccess"]
