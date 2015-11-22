@@ -45,6 +45,7 @@ blockquote { font-style: italic; margin: 1em; }
 .intro a.homelink {color:#111; text-decoration: none; border-bottom: none;}
 
 @media (max-width: 55em) {
+  html { font-size:20px; }		
   h2 { margin: 0 0 1em 0; }
   .intro ul { margin: 0 0 3em 0; }
   .intro .more { display: none; }
