@@ -5,9 +5,9 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 15 Jul 2018 14:06:40 +0200</pubDate>
-    <lastBuildDate>Sun, 15 Jul 2018 14:06:40 +0200</lastBuildDate>
-    <generator>Jekyll v3.1.2</generator>
+    <pubDate>Sun, 14 Oct 2018 16:11:02 +0200</pubDate>
+    <lastBuildDate>Sun, 14 Oct 2018 16:11:02 +0200</lastBuildDate>
+    <generator>Jekyll v3.8.4</generator>
     
       <item>
         <title>Shirakawa</title>
@@ -77,7 +77,7 @@
     // create the audio context (chrome only for now)
     if (! window.AudioContext) {
         if (! window.webkitAudioContext) {
-            alert(&#39;no audiocontext found&#39;);
+            alert('no audiocontext found');
         }
         window.AudioContext = window.webkitAudioContext;
     }
@@ -96,10 +96,10 @@
 
     var gradient = ctx.createLinearGradient(0, 0, 0, 300);
 
-    gradient.addColorStop(1, &#39;#DF01A5&#39;);
-    gradient.addColorStop(0.75, &#39;#DF01A5&#39;);
-    gradient.addColorStop(0.25, &#39;#DF01A5&#39;);
-    gradient.addColorStop(0, &#39;#DF01A5&#39;);
+    gradient.addColorStop(1, '#DF01A5');
+    gradient.addColorStop(0.75, '#DF01A5');
+    gradient.addColorStop(0.25, '#DF01A5');
+    gradient.addColorStop(0, '#DF01A5');
 
 
     // load the sound
@@ -112,7 +112,7 @@
 
         // setup a javascript node
         javascriptNode = context.createScriptProcessor(2048, 1, 1);
-        // connect to destination, else it isn&#39;t called
+        // connect to destination, else it isn't called
         javascriptNode.connect(context.destination);
 
 
@@ -132,8 +132,8 @@
     // load the specified sound
     function loadSound(url) {
         var request = new XMLHttpRequest();
-        request.open(&#39;GET&#39;, url, true);
-        request.responseType = &#39;arraybuffer&#39;;
+        request.open('GET', url, true);
+        request.responseType = 'arraybuffer';
 
         // When loaded decode the data
         request.onload = function() {
