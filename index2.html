@@ -17,7 +17,6 @@
   }
   p, a {
     color: inherit;
-    line-height: 8px;
   }
   a {
     text-decoration: underline;
@@ -81,14 +80,15 @@
     if (document.documentElement.classList.contains('light-mode')) {
       themeIcon.innerHTML = `
         <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="2" x2="12" y2="4"></line>
-        <line x1="12" y1="20" x2="12" y2="22"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="2" y1="12" x2="4" y2="12"></line>
-        <line x1="20" y1="12" x2="22" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        <!-- Sun Rays -->
+        <path d="M12 1V4"></path>
+        <path d="M12 20V23"></path>
+        <path d="M4.22 4.22L5.64 5.64"></path>
+        <path d="M18.36 18.36L19.78 19.78"></path>
+        <path d="M1 12H4"></path>
+        <path d="M20 12H23"></path>
+        <path d="M4.22 19.78L5.64 18.36"></path>
+        <path d="M18.36 5.64L19.78 4.22"></path>
       `;
       localStorage.setItem('theme', 'light');
     } else {
@@ -106,14 +106,15 @@
       document.documentElement.classList.add('light-mode');
       themeIcon.innerHTML = `
         <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="2" x2="12" y2="4"></line>
-        <line x1="12" y1="20" x2="12" y2="22"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="2" y1="12" x2="4" y2="12"></line>
-        <line x1="20" y1="12" x2="22" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        <!-- Sun Rays -->
+        <path d="M12 1V4"></path>
+        <path d="M12 20V23"></path>
+        <path d="M4.22 4.22L5.64 5.64"></path>
+        <path d="M18.36 18.36L19.78 19.78"></path>
+        <path d="M1 12H4"></path>
+        <path d="M20 12H23"></path>
+        <path d="M4.22 19.78L5.64 18.36"></path>
+        <path d="M18.36 5.64L19.78 4.22"></path>
       `;
     }
   }
