@@ -18,7 +18,6 @@
   p, a {
     color: inherit;
     line-height: 8px;
-
   }
   a {
     text-decoration: underline;
@@ -48,8 +47,8 @@
 
   /* SVG icon styles */
   .toggle-btn svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     fill: currentColor;
     transition: transform 0.3s ease;
   }
@@ -61,7 +60,7 @@
 <button class="toggle-btn" onclick="toggleMode()">
   <svg id="theme-icon" viewBox="0 0 24 24">
     <!-- Default: Moon Icon -->
-    <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0021 12.79z"></path>
+    <path d="M21 12.79A9 9 0 0111.21 3a7 7 0 1 0 9.79 9.79z"></path>
   </svg>
 </button>
 
@@ -80,10 +79,22 @@
 
     // Toggle between moon and sun icons
     if (document.documentElement.classList.contains('light-mode')) {
-      themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
+      themeIcon.innerHTML = `
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="2" x2="12" y2="4"></line>
+        <line x1="12" y1="20" x2="12" y2="22"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="2" y1="12" x2="4" y2="12"></line>
+        <line x1="20" y1="12" x2="22" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      `;
       localStorage.setItem('theme', 'light');
     } else {
-      themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0021 12.79z"></path>';
+      themeIcon.innerHTML = `
+        <path d="M21 12.79A9 9 0 0111.21 3a7 7 0 1 0 9.79 9.79z"></path>
+      `;
       localStorage.setItem('theme', 'dark');
     }
   }
@@ -93,7 +104,17 @@
     const themeIcon = document.getElementById('theme-icon');
     if (localStorage.getItem('theme') === 'light') {
       document.documentElement.classList.add('light-mode');
-      themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
+      themeIcon.innerHTML = `
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="2" x2="12" y2="4"></line>
+        <line x1="12" y1="20" x2="12" y2="22"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="2" y1="12" x2="4" y2="12"></line>
+        <line x1="20" y1="12" x2="22" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      `;
     }
   }
 </script>
