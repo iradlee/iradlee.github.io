@@ -38,17 +38,19 @@
     right: 20px;
     padding: 8px 12px;
     background: none;
-    border: 2px solid currentColor;
-    color: inherit;
+    border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 24px;
+    color: inherit;
   }
 </style>
 </head>
 <body>
 
-<!-- Toggle Button -->
-<button class="toggle-btn" onclick="toggleMode()">Toggle Mode</button>
+<!-- Toggle Button with Icon -->
+<button class="toggle-btn" onclick="toggleMode()">
+  🌙 <!-- Moon icon by default -->
+</button>
 
 <div>
   <p>Irad Lee</p>
@@ -60,18 +62,29 @@
 <script>
   function toggleMode() {
     document.documentElement.classList.toggle('light-mode');
-    
-    // Save user preference
+
+    // Get the button
+    const button = document.querySelector('.toggle-btn');
+
+    // Toggle icon based on mode
     if (document.documentElement.classList.contains('light-mode')) {
+      button.innerHTML = '☀️'; // Sun icon for light mode
       localStorage.setItem('theme', 'light');
     } else {
+      button.innerHTML = '🌙'; // Moon icon for dark mode
       localStorage.setItem('theme', 'dark');
     }
   }
 
-  // Load user preference
-  if (localStorage.getItem('theme') === 'light') {
-    document.documentElement.classList.add('light-mode');
+  // Load user preference and update icon
+  window.onload = function() {
+    const button = document.querySelector('.toggle-btn');
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.add('light-mode');
+      button.innerHTML = '☀️'; // Sun icon
+    } else {
+      button.innerHTML = '🌙'; // Moon icon
+    }
   }
 </script>
 
