@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irad Lee</title>
+<style>
+  /* Default dark mode */
+  html {
+    background-color: #000;
+    color: #fff;
+    transition: background 0.3s, color 0.3s;
+  }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 64px 0 0 40px;
+  }
+  p, a {
+    color: inherit;
+  }
+  a {
+    text-decoration: underline;
+  }
+  .spacing-m {
+    margin-bottom: 32px;
+  }
+
+  /* Light mode styles */
+  .light-mode {
+    background-color: #fff;
+    color: #000;
+  }
+
+  /* Toggle button styles */
+  .toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 12px;
+    background: none;
+    border: 2px solid currentColor;
+    color: inherit;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Toggle Button -->
+<button class="toggle-btn" onclick="toggleMode()">Toggle Mode</button>
+
+<div>
+  <p>Irad Lee</p>
+  <p>Design Director</p>
+  <p class="spacing-m">Berlin, Germany</p>
+  <a href="https://www.linkedin.com/in/iradlee/">LinkedIn</a>
+</div>
+
+<script>
+  function toggleMode() {
+    document.documentElement.classList.toggle('light-mode');
+    
+    // Save user preference
+    if (document.documentElement.classList.contains('light-mode')) {
+      localStorage.setItem('theme', 'light');
+    } else {
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+
+  // Load user preference
+  if (localStorage.getItem('theme') === 'light') {
+    document.documentElement.classList.add('light-mode');
+  }
+</script>
+
+</body>
+</html>
