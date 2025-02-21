@@ -14,6 +14,7 @@
   body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 64px 0 0 40px;
+    line-height: 8px;
   }
   p, a {
     color: inherit;
@@ -36,20 +37,31 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    padding: 8px 12px;
+    padding: 8px;
     background: none;
     border: none;
     cursor: pointer;
     font-size: 24px;
     color: inherit;
   }
+
+  /* SVG icon styles */
+  .toggle-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+  }
 </style>
 </head>
 <body>
 
-<!-- Toggle Button with Icon -->
+<!-- Toggle Button with SVG Icons -->
 <button class="toggle-btn" onclick="toggleMode()">
-  🌙 <!-- Moon icon by default -->
+  <svg id="theme-icon" viewBox="0 0 24 24">
+    <!-- Default: Moon Icon -->
+    <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0021 12.79z"></path>
+  </svg>
 </button>
 
 <div>
@@ -63,27 +75,24 @@
   function toggleMode() {
     document.documentElement.classList.toggle('light-mode');
 
-    // Get the button
-    const button = document.querySelector('.toggle-btn');
+    const themeIcon = document.getElementById('theme-icon');
 
-    // Toggle icon based on mode
+    // Toggle between moon and sun icons
     if (document.documentElement.classList.contains('light-mode')) {
-      button.innerHTML = '☀️'; // Sun icon for light mode
+      themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
       localStorage.setItem('theme', 'light');
     } else {
-      button.innerHTML = '🌙'; // Moon icon for dark mode
+      themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0021 12.79z"></path>';
       localStorage.setItem('theme', 'dark');
     }
   }
 
   // Load user preference and update icon
   window.onload = function() {
-    const button = document.querySelector('.toggle-btn');
+    const themeIcon = document.getElementById('theme-icon');
     if (localStorage.getItem('theme') === 'light') {
       document.documentElement.classList.add('light-mode');
-      button.innerHTML = '☀️'; // Sun icon
-    } else {
-      button.innerHTML = '🌙'; // Moon icon
+      themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
     }
   }
 </script>
