@@ -1,24 +1,113 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Irad Lee</title>
 <style>
-  html { background-color: #000; padding: 0; margin: 0; }	
-  body { font-family: Arial, Helvetica, sans-serif; margin: 64px 0 0 40px; }
-  p { color: #fff; line-height: 8px; width: 100%; }
-  a { color: #fff; text-decoration: underline; }
-  .nowrap { white-space: nowrap; }
-  .spacing-m { margin-bottom: 32px;}
+  /* Default dark mode */
+  html {
+    background-color: #000;
+    color: #fff;
+    transition: background 0.3s, color 0.3s;
+  }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 64px 0 0 40px;
+  }
+  p, a {
+    color: inherit;
+    line-height: 8px;
+  }
+  a {
+    text-decoration: underline;
+  }
+  .spacing-m {
+    margin-bottom: 32px;
+  }
+
+  /* Light mode styles */
+  .light-mode {
+    background-color: #fff;
+    color: #000;
+  }
+
+  /* Toggle button styles */
+  .toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: inherit;
+  }
+
+  /* SVG icon styles */
+  .toggle-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+  }
 </style>
 </head>
 <body>
+
+<!-- Toggle Button with SVG Icons -->
+<button class="toggle-btn" onclick="toggleMode()">
+  <svg id="theme-icon" viewBox="0 0 24 24">
+    <!-- Default: Sun Icon (to switch to dark mode) -->
+    <circle cx="12" cy="12" r="3.5"></circle>  
+    <path d="M12 2V5M12 19V22M5 5L7 7M17 17L19 19M2 12H5M19 12H22M5 19L7 17M17 7L19 5" 
+    stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
+  </svg>
+</button>
+
 <div>
   <p>Irad Lee</p>
   <p>Design Director</p>
-<p class="spacing-m">Berlin, Germany</p>
+  <p class="spacing-m">Berlin, Germany</p>
   <a href="https://www.linkedin.com/in/iradlee/">LinkedIn</a>
 </div>
+
+<script>
+  function toggleMode() {
+    document.documentElement.classList.toggle('light-mode');
+
+    const themeIcon = document.getElementById('theme-icon');
+
+    // Toggle between sun (dark mode) and moon (light mode)
+    if (document.documentElement.classList.contains('light-mode')) {
+      // Light mode -> Show Moon Icon (to switch to dark mode)
+      themeIcon.innerHTML = `
+        <path d="M21 12.79A9 9 0 0111.21 3a6.5 6.5 0 1 0 9.79 9.79z" stroke="currentColor" stroke-width="1.4"></path>
+      `;
+      localStorage.setItem('theme', 'light');
+    } else {
+      // Dark mode -> Show Sun Icon (to switch to light mode)
+      themeIcon.innerHTML = `
+        <circle cx="12" cy="12" r="3.5"></circle>  
+        <path d="M12 2V5M12 19V22M5 5L7 7M17 17L19 19M2 12H5M19 12H22M5 19L7 17M17 7L19 5" 
+        stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
+      `;
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+
+  // Load user preference and update icon
+  window.onload = function() {
+    const themeIcon = document.getElementById('theme-icon');
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.add('light-mode');
+      themeIcon.innerHTML = `
+        <path d="M21 12.79A9 9 0 0111.21 3a6.5 6.5 0 1 0 9.79 9.79z" stroke="currentColor" stroke-width="1.4"></path>
+      `;
+    }
+  }
+</script>
+
 </body>
 </html>
