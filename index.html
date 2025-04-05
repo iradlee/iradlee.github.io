@@ -72,10 +72,8 @@
 <!-- Toggle Button with SVG Icons -->
 <button class="toggle-btn" onclick="toggleMode()">
   <svg id="theme-icon" viewBox="0 0 24 24">
-    <!-- Default: Sun Icon (to switch to dark mode) -->
-    <circle cx="12" cy="12" r="3.5"></circle>  
-    <path d="M12 2V5M12 19V22M5 5L7 7M17 17L19 19M2 12H5M19 12H22M5 19L7 17M17 7L19 5" 
-    stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
+    <!-- Default: Moon Icon (click to switch to light mode) -->
+    <path d="M21 12.79A9 9 0 0111.21 3a6.5 6.5 0 1 0 9.79 9.79z" stroke="currentColor" stroke-width="1.4"></path>
   </svg>
 </button>
 
@@ -92,29 +90,36 @@
 
     const themeIcon = document.getElementById('theme-icon');
 
-    // Toggle between sun (dark mode) and moon (light mode)
     if (document.documentElement.classList.contains('light-mode')) {
-      // Light mode -> Show Moon Icon (to switch to dark mode)
-      themeIcon.innerHTML = `
-        <path d="M21 12.79A9 9 0 0111.21 3a6.5 6.5 0 1 0 9.79 9.79z" stroke="currentColor" stroke-width="1.4"></path>
-      `;
-      localStorage.setItem('theme', 'light');
-    } else {
-      // Dark mode -> Show Sun Icon (to switch to light mode)
+      // Light mode active → show SUN icon to switch to dark mode
       themeIcon.innerHTML = `
         <circle cx="12" cy="12" r="3.5"></circle>  
         <path d="M12 2V5M12 19V22M5 5L7 7M17 17L19 19M2 12H5M19 12H22M5 19L7 17M17 7L19 5" 
         stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
       `;
+      localStorage.setItem('theme', 'light');
+    } else {
+      // Dark mode active → show MOON icon to switch to light mode
+      themeIcon.innerHTML = `
+        <path d="M21 12.79A9 9 0 0111.21 3a6.5 6.5 0 1 0 9.79 9.79z" stroke="currentColor" stroke-width="1.4"></path>
+      `;
       localStorage.setItem('theme', 'dark');
     }
   }
 
-  // Load user preference and update icon
+  // Load user preference and update icon accordingly
   window.onload = function() {
     const themeIcon = document.getElementById('theme-icon');
     if (localStorage.getItem('theme') === 'light') {
       document.documentElement.classList.add('light-mode');
+      // Light mode active → show SUN icon
+      themeIcon.innerHTML = `
+        <circle cx="12" cy="12" r="3.5"></circle>  
+        <path d="M12 2V5M12 19V22M5 5L7 7M17 17L19 19M2 12H5M19 12H22M5 19L7 17M17 7L19 5" 
+        stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
+      `;
+    } else {
+      // Dark mode active (default) → show MOON icon
       themeIcon.innerHTML = `
         <path d="M21 12.79A9 9 0 0111.21 3a6.5 6.5 0 1 0 9.79 9.79z" stroke="currentColor" stroke-width="1.4"></path>
       `;
