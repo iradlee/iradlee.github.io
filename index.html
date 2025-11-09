@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Irad Lee</title>
@@ -9,11 +10,11 @@
   html {
     background-color: #000;
     color: #fff;
-    transition: background 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
   }
   body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 64px 0 0 40px;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
   }
   p, a {
     color: inherit;
@@ -47,9 +48,6 @@
 
   /* Toggle button styles */
   .toggle-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     padding: 8px;
     background: none;
     border: none;
@@ -63,66 +61,66 @@
     width: 26px;
     height: 26px;
     fill: currentColor;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 32px 0 32px;
   }
 </style>
 </head>
 <body>
 
-<!-- Toggle Button with SVG Icons -->
-<button class="toggle-btn" onclick="toggleMode()">
-  <svg id="theme-icon" viewBox="0 0 24 24">
-    <!-- Default: Moon Icon (click to switch to light mode) -->
-    <path d="M21 12.79A9 9 0 0111.21 3a6.5 6.5 0 1 0 9.79 9.79z" stroke="currentColor" stroke-width="1.4"></path>
-  </svg>
-</button>
-
-<div>
-  <p>-</p>
-  <p>Irad Lee</p>
+<div class="header">
+  <div>
+    <p>Irad Lee</p>
+  </div>
+  <button class="toggle-btn" onclick="toggleMode()">
+    <svg id="theme-icon" viewBox="0 -960 960 960">
+      <!-- Default: Moon Icon (click to switch to light mode) -->
+      <path d="M21 12.79A9 9 0 0111.21 3a6.5 6.5 0 1 0 9.79 9.79z" stroke="currentColor" stroke-width="1.4"></path>
+    </svg>
+  </button>
 </div>
 
 <script>
   function toggleMode() {
-    document.documentElement.classList.toggle('light-mode');
-
     const themeIcon = document.getElementById('theme-icon');
 
     if (document.documentElement.classList.contains('light-mode')) {
-      // Light mode active → show SUN icon to switch to dark mode
+      document.documentElement.classList.remove('light-mode');
       themeIcon.innerHTML = `
-        <circle cx="12" cy="12" r="3.5"></circle>  
-        <path d="M12 2V5M12 19V22M5 5L7 7M17 17L19 19M2 12H5M19 12H22M5 19L7 17M17 7L19 5" 
-        stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
-      `;
-      localStorage.setItem('theme', 'light');
-    } else {
-      // Dark mode active → show MOON icon to switch to light mode
-      themeIcon.innerHTML = `
-        <path d="M21 12.79A9 9 0 0111.21 3a6.5 6.5 0 1 0 9.79 9.79z" stroke="currentColor" stroke-width="1.4"></path>
+        <path d="M480-300q-74.92 0-127.46-52.54Q300-405.08 300-480q0-74.92 52.54-127.46Q405.08-660 480-660q74.92 0 127.46 52.54Q660-554.92 660-480q0 74.92-52.54 127.46Q554.92-300 480-300ZM200-450H50v-60h150v60Zm710 0H760v-60h150v60ZM450-760v-150h60v150h-60Zm0 710v-150h60v150h-60ZM262.92-656.92l-93.69-90.46 42.39-44.39 90.23 92.69-38.93 42.16Zm485.46 488.69-90.84-93.31 39.54-41.54 93.69 90.46-42.39 44.39Zm-91.46-528.85 90.46-93.69 44.39 42.39-92.69 90.23-42.16-38.93ZM168.23-211.62l93.31-90.84 40.77 39.54-90.08 94.07-44-42.77Z"/>
       `;
       localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.add('light-mode');
+      themeIcon.innerHTML = `
+        <path d="M481.15-140q-141.66 0-240.83-99.17-99.16-99.16-99.16-240.83 0-135.77 92.11-232.88 92.11-97.12 225.57-105.2 8.62 0 16.93.62 8.3.62 16.3 1.85-30.61 28.61-48.76 69.15-18.16 40.54-18.16 86.46 0 98.33 68.84 167.17Q562.82-424 661.15-424q46.54 0 86.77-18.15 40.23-18.16 68.46-48.77 1.23 8 1.85 16.31.61 8.3.61 16.92-7.69 133.46-104.8 225.57Q616.92-140 481.15-140Z"/>
+      `;
+      localStorage.setItem('theme', 'light');
     }
   }
 
-  // Load user preference and update icon accordingly
   window.onload = function() {
     const themeIcon = document.getElementById('theme-icon');
-    if (localStorage.getItem('theme') === 'light') {
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'light') {
       document.documentElement.classList.add('light-mode');
-      // Light mode active → show SUN icon
       themeIcon.innerHTML = `
-        <circle cx="12" cy="12" r="3.5"></circle>  
-        <path d="M12 2V5M12 19V22M5 5L7 7M17 17L19 19M2 12H5M19 12H22M5 19L7 17M17 7L19 5" 
-        stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
+        <path d="M481.15-140q-141.66 0-240.83-99.17-99.16-99.16-99.16-240.83 0-135.77 92.11-232.88 92.11-97.12 225.57-105.2 8.62 0 16.93.62 8.3.62 16.3 1.85-30.61 28.61-48.76 69.15-18.16 40.54-18.16 86.46 0 98.33 68.84 167.17Q562.82-424 661.15-424q46.54 0 86.77-18.15 40.23-18.16 68.46-48.77 1.23 8 1.85 16.31.61 8.3.61 16.92-7.69 133.46-104.8 225.57Q616.92-140 481.15-140Z"/>
       `;
     } else {
-      // Dark mode active (default) → show MOON icon
+      document.documentElement.classList.remove('light-mode');
       themeIcon.innerHTML = `
-        <path d="M21 12.79A9 9 0 0111.21 3a6.5 6.5 0 1 0 9.79 9.79z" stroke="currentColor" stroke-width="1.4"></path>
+        <path d="M480-300q-74.92 0-127.46-52.54Q300-405.08 300-480q0-74.92 52.54-127.46Q405.08-660 480-660q74.92 0 127.46 52.54Q660-554.92 660-480q0 74.92-52.54 127.46Q554.92-300 480-300ZM200-450H50v-60h150v60Zm710 0H760v-60h150v60ZM450-760v-150h60v150h-60Zm0 710v-150h60v150h-60ZM262.92-656.92l-93.69-90.46 42.39-44.39 90.23 92.69-38.93 42.16Zm485.46 488.69-90.84-93.31 39.54-41.54 93.69 90.46-42.39 44.39Zm-91.46-528.85 90.46-93.69 44.39 42.39-92.69 90.23-42.16-38.93ZM168.23-211.62l93.31-90.84 40.77 39.54-90.08 94.07-44-42.77Z"/>
       `;
     }
-  }
+  };
 </script>
 
 </body>
